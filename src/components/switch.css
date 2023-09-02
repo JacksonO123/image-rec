@@ -1,0 +1,25 @@
+.switch {
+  height: 18px;
+  width: 36px;
+  background: #ccc;
+  border-radius: 100px;
+  padding: 3px;
+  transition: 0.15s;
+}
+
+.switch.active {
+  background: #37a354;
+}
+
+.nob {
+  height: 100%;
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 100px;
+  transition: 0.15s;
+  cursor: pointer;
+}
+
+.nob.active {
+  transform: translateX(18px);
+}
