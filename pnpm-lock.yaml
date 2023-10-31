@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@jacksonotto/lampjs':
-    specifier: ^3.6.6
-    version: 3.6.6
+    specifier: ^4.3.0
+    version: 4.3.0
 
 devDependencies:
   typescript:
@@ -217,8 +217,8 @@ packages:
     dev: true
     optional: true
 
-  /@jacksonotto/lampjs@3.6.6:
-    resolution: {integrity: sha512-ttURCg0G24IJvNV51LUkk4zkpqBDcDOaY9bLkBM75UGT5rhafZUT8+Th1t/NoRoHRXiJFH8z/aMN9DBW2ijq9Q==}
+  /@jacksonotto/lampjs@4.3.0:
+    resolution: {integrity: sha512-UDTl3E3n4ZxTGOfOZig04UqsEw/MfWlQqQ5FWEAalxHb2/e3QlCMV2k8U4hkJob5S7XuT3YpDi14sT1KkOqEiA==}
     dev: false
 
   /esbuild@0.18.20:

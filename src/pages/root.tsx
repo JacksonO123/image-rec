@@ -4,10 +4,10 @@ import {
   createEffect,
   createState,
   reactive,
+  reactiveElement,
 } from "@jacksonotto/lampjs";
 import FileUpload from "../components/FileUpload";
 import "./root.css";
-import Questions from "../components/Questions";
 
 const Root = () => {
   // @ts-ignore
@@ -38,15 +38,7 @@ const Root = () => {
   const imgRef = createState<HTMLImageElement | null>(null);
   const summary = createState("");
 
-  const question = createState(false);
   const answer = createState<boolean | null>(null);
-  const submitQuestion = (guess: string) => {
-    const correct = boxes().value.reduce(
-      (acc, curr) => acc || curr.label === guess,
-      false
-    );
-    answer(correct);
-  };
 
   const detect = async () => {
     const img = imgRef().value;
@@ -99,33 +91,34 @@ const Root = () => {
         <FileUpload onUpload={handleUpload} />
       </header>
 
-      <Questions show={question} onSubmit={submitQuestion} correct={answer} />
-
       <section>
         <For each={boxes()}>
-          {(item) => (
-            <div
-              style={{
-                left: `${item.x}px`,
-                top: `${item.y}px`,
-                width: `${item.width}px`,
-                height: `${item.height}px`,
-              }}
-              class="box"
-            >
-              <span>
-                {reactive(
-                  (val) =>
-                    val ? (
-                      <div>{Array(item.label.length).fill("-").join("")}</div>
-                    ) : (
-                      <div>{item.label}</div>
+          {(item, _, cleanup) => {
+            const boxStyle = reactive(
+              (val) => ({
+                left: `${val.x}px`,
+                top: `${val.y}px`,
+                width: `${val.width}px`,
+                height: `${val.height}px`,
+              }),
+              [item()]
+            );
+
+            cleanup(boxStyle());
+
+            return (
+              <div style={boxStyle()} class="box">
+                <span>
+                  {reactiveElement(
+                    (val) => (
+                      <div>{val.label}</div>
                     ),
-                  [question()]
-                )}
-              </span>
-            </div>
-          )}
+                    [item()]
+                  )}
+                </span>
+              </div>
+            );
+          }}
         </For>
 
         <img src={currentImg()} alt="" ref={imgRef()} onLoad={detect} />

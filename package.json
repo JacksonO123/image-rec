@@ -1,7 +1,8 @@
 {
-  "name": "new-lampjs-app",
-  "version": "0.1.0",
+  "name": "Image recognition",
+  "version": "1.0.0",
   "type": "module",
+  "author": "Jackson Otto",
   "scripts": {
     "dev": "vite --port 3000",
     "build": "tsc && vite build",
@@ -12,6 +13,6 @@
     "vite": "latest"
   },
   "dependencies": {
-    "@jacksonotto/lampjs": "^3.6.6"
+    "@jacksonotto/lampjs": "^4.3.0"
   }
 }
